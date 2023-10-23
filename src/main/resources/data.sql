@@ -1,4 +1,4 @@
-INSERT INTO Currency (code, symbol, rate, description, rate_float)
-VALUES ('USD', '&#36;', 30.6869923, 'United States Dollar', 30686.9923),
-       ('EUR', '&#8364;', 35.1234567, 'Euro', 35123.4567),
-       ('GBP', '&#163;', 41.9876543, 'British Pound', 41987.6543);
+INSERT INTO Currency (code, code_ch, symbol, description, rate_float)
+VALUES ('USD', '美金',  '&#36;', 'United States Dollar', 30686.9923),
+       ('EUR', '歐元', '&pound;', 'Euro', 35123.4567),
+       ('GBP', '英鎊', '&euro;', 'British Pound', 41987.6543);
