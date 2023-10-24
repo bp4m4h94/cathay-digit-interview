@@ -12,6 +12,6 @@ public class CurrencyInfoDto implements Serializable {
     private String symbol;
     private String rate;
     private String description;
-    private BigDecimal rateFloat;
+    private BigDecimal rate_float;
 
 }
