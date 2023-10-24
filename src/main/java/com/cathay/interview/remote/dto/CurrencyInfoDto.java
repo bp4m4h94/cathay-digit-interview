@@ -1,4 +1,4 @@
-package com.cathay.interview.dto;
+package com.cathay.interview.remote.dto;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.cathay.interview.remote;
+package com.cathay.interview.remote.api;
 
-import com.cathay.interview.dto.CurrencyInfoDto;
+import com.cathay.interview.remote.dto.CurrencyInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

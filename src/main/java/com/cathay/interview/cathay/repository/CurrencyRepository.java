@@ -1,6 +1,6 @@
-package com.cathay.interview.repository;
+package com.cathay.interview.cathay.repository;
 
-import com.cathay.interview.entity.Currency;
+import com.cathay.interview.cathay.entity.Currency;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

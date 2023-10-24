@@ -1,10 +1,10 @@
-package com.cathay.interview.controller;
+package com.cathay.interview.cathay.controller;
 
-import com.cathay.interview.dto.BitcoinPriceDataDto;
-import com.cathay.interview.dto.CurrencyInfoDto;
-import com.cathay.interview.entity.Currency;
-import com.cathay.interview.remote.CoinDeskApi;
-import com.cathay.interview.repository.CurrencyRepository;
+import com.cathay.interview.remote.dto.BitcoinPriceDataDto;
+import com.cathay.interview.remote.dto.CurrencyInfoDto;
+import com.cathay.interview.cathay.entity.Currency;
+import com.cathay.interview.remote.api.CoinDeskApi;
+import com.cathay.interview.cathay.repository.CurrencyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.cathay.interview.service;
+package com.cathay.interview.cathay.service;
 
 public class CurrencyServiceImpl implements CurrencyService {
 }

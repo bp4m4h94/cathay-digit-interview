@@ -1,4 +1,4 @@
-package com.cathay.interview.entity;
+package com.cathay.interview.cathay.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

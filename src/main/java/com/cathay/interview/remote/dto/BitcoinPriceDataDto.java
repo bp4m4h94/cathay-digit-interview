@@ -1,6 +1,6 @@
-package com.cathay.interview.dto;
+package com.cathay.interview.remote.dto;
 
-import com.cathay.interview.CurrencyType;
+import com.cathay.interview.remote.enums.CurrencyType;
 import lombok.Data;
 
 import java.io.Serializable;
