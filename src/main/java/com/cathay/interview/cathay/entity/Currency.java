@@ -1,10 +1,7 @@
 package com.cathay.interview.cathay.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.cathay.interview.remote.enums.CurrencyType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,16 +21,23 @@ public class Currency implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "code")
-    private String code;
+    @Enumerated(EnumType.STRING)
+    private CurrencyType code;
+
     @Column(name = "code_ch")
     private String chineseCode;
+
     @Column(name = "symbol")
     private String symbol;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "rate_float")
     private BigDecimal rateFloat;
+
     @Column(name = "updated_date")
     private String updatedDate;
 }

@@ -1,12 +1,11 @@
 package com.cathay.interview.remote.api;
 
+import com.cathay.interview.remote.dto.BitcoinPriceDataDto;
 import com.cathay.interview.remote.dto.CurrencyInfoDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +20,8 @@ public class CoinDeskApi {
     public static final String URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private ObjectMapper objectMapper;
 
 
     @GetMapping("/download")
@@ -36,5 +37,10 @@ public class CoinDeskApi {
                 request,
                 String.class
         );
+    }
+    @GetMapping("/deserialize")
+    public BitcoinPriceDataDto deserialize() throws JsonProcessingException {
+        ResponseEntity<String> response = downloadData();
+        return objectMapper.readValue(response.getBody(), BitcoinPriceDataDto.class);
     }
 }

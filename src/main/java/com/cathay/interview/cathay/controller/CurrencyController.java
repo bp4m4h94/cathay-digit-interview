@@ -5,12 +5,14 @@ import com.cathay.interview.remote.dto.CurrencyInfoDto;
 import com.cathay.interview.cathay.entity.Currency;
 import com.cathay.interview.remote.api.CoinDeskApi;
 import com.cathay.interview.cathay.repository.CurrencyRepository;
+import com.cathay.interview.remote.enums.CurrencyType;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,10 +28,26 @@ public class CurrencyController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @GetMapping
+    public ResponseEntity<Currency> findByCode(@RequestParam @Validated CurrencyType code) {
+        Currency currency = currencyRepository.findByCode(code);
+        if (currency != null) {
+            return new ResponseEntity<>(currency, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    @GetMapping("/all")
-    public List<Currency> all() {
-        return currencyRepository.findAll();
+    @GetMapping("/updated-date")
+    public ResponseEntity<String> findUpdatedDateByCode() throws JsonProcessingException {
+        ResponseEntity<String> response = coinDeskApi.downloadData();
+        BitcoinPriceDataDto bitcoinPriceDataDto = objectMapper.readValue(response.getBody(), BitcoinPriceDataDto.class);
+        String updatedDate = bitcoinPriceDataDto.getTime().getUpdated();
+        if (updatedDate != null) {
+            return new ResponseEntity<>(updatedDate, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/sync")
@@ -40,7 +58,7 @@ public class CurrencyController {
 
         List<Currency> currencyArrayList = new ArrayList<>();
         for (CurrencyInfoDto source : bpiList) {
-            Currency target = currencyRepository.findByCode(source.getCode());
+            Currency target = currencyRepository.findByCode(Enum.valueOf(CurrencyType.class, source.getCode()));
             target.setSymbol(source.getSymbol());
             target.setRateFloat(source.getRate_float());
             target.setDescription(source.getDescription());
@@ -49,4 +67,10 @@ public class CurrencyController {
         }
         return currencyRepository.saveAll(currencyArrayList);
     }
+
+    @GetMapping("/all")
+    public List<Currency> all() {
+        return currencyRepository.findAll();
+    }
+
 }
