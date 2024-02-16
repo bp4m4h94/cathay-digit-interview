@@ -1,6 +1,5 @@
 package com.cathay.interview.cathay.entity;
 
-import com.cathay.interview.remote.enums.CurrencyType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,17 +22,10 @@ public class Currency implements Serializable {
     private Long id;
 
     @Column(name = "code")
-    @Enumerated(EnumType.STRING)
-    private CurrencyType code;
+    private String code;
 
     @Column(name = "code_ch")
     private String chineseCode;
-
-    @Column(name = "symbol")
-    private String symbol;
-
-    @Column(name = "description")
-    private String description;
 
     @Column(name = "rate_float")
     private BigDecimal rateFloat;

@@ -1,6 +1,6 @@
 package com.cathay.interview.remote.dto;
 
-import com.cathay.interview.remote.enums.CurrencyType;
+import com.cathay.interview.remote.enums.CurrencyCode;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,5 +12,5 @@ public class BitcoinPriceDataDto implements Serializable {
     private TimeInfoDto time;
     private String disclaimer;
     private String chartName;
-    private Map<CurrencyType, CurrencyInfoDto> bpi;
+    private Map<CurrencyCode, CurrencyInfoDto> bpi;
 }
